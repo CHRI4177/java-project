@@ -8,6 +8,6 @@ node('linux') {
         sh 'ant -f build.xml -v'
     }
     stage('Deploy') {
-        s3Upload(file:'rectangle-${BUILD_NUMBER}.jar', bucket:'seis665-assignment10-java-project', path:'/workspace/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar')
+        aws s3 cp /workspace/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar s3://seis665-assignment10-java-project
     }
 }
