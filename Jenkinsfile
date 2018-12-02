@@ -8,6 +8,7 @@ node('linux') {
         sh 'ant -f build.xml -v'
     }
     stage('Deploy') {
+        echo ${BUILD_NUMBER}
         echo '/workspace/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar'
         aws s3 cp '/workspace/java-pipeline/dist/rectangle-${BUILD_NUMBER}.jar' 's3://seis665-assignment10-java-project'
     }
